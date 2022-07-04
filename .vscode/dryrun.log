@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/root/playground/go/sql-transaction-abstraction'
+export ENV=DEV && go run ./adapt-ent/cmd/
+make: Leaving directory `/root/playground/go/sql-transaction-abstraction'
+ 
