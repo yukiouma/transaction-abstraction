@@ -7,17 +7,16 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/datasource"
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/usecase"
+	"github.com/AkiOuma/transaction-abstraction/adapt-sql-driver/datasource"
+	"github.com/AkiOuma/transaction-abstraction/adapt-sql-driver/usecase"
 )
 
 func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*2)
 	defer cancel()
 	addr := "root:000000@tcp(127.0.0.1:3306)/tx-demo?parseTime=True"
-	ent := datasource.NewEnt(addr)
-	defer ent.Close()
-	ds := datasource.NewDatasource(ent)
+	db := datasource.NewSqlDB(addr)
+	ds := datasource.NewDatasource(db)
 	uc := usecase.NewUsecase(ds)
 
 	// with out transaction

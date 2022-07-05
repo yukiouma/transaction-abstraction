@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/domain/repository"
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/domain/valueobject"
+	"github.com/AkiOuma/transaction-abstraction/adapt-sql-driver/domain/repository"
+	"github.com/AkiOuma/transaction-abstraction/adapt-sql-driver/domain/valueobject"
 )
 
 type Usecase struct {
