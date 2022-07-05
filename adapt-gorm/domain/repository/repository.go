@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/domain/valueobject"
+	"github.com/AkiOuma/transaction-abstraction/adapt-gorm/domain/valueobject"
 )
 
 type Repository interface {

@@ -7,17 +7,16 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/datasource"
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/usecase"
+	"github.com/AkiOuma/transaction-abstraction/adapt-gorm/datasource"
+	"github.com/AkiOuma/transaction-abstraction/adapt-gorm/usecase"
 )
 
 func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*2)
 	defer cancel()
 	addr := "root:000000@tcp(127.0.0.1:3306)/tx-demo?parseTime=True"
-	ent := datasource.NewEnt(addr)
-	defer ent.Close()
-	ds := datasource.NewDatasource(ent)
+	gormDB := datasource.NewGormDB(addr)
+	ds := datasource.NewDatasource(gormDB)
 	uc := usecase.NewUsecase(ds)
 
 	// with out transaction

@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/domain/repository"
-	"github.com/AkiOuma/transaction-abstraction/adapt-ent/domain/valueobject"
+	"github.com/AkiOuma/transaction-abstraction/adapt-gorm/domain/repository"
+	"github.com/AkiOuma/transaction-abstraction/adapt-gorm/domain/valueobject"
 )
 
 type Usecase struct {
@@ -16,14 +16,14 @@ func NewUsecase(repo repository.Repository) *Usecase {
 }
 
 func (u *Usecase) CreateAdminUser(ctx context.Context, name ...string) error {
-	errs := make([]error, 0, 2)
 	tx, err := u.repo.StartTx(ctx)
 	if err != nil {
 		return err
 	}
 	newUserId, err1 := tx.CreateUser(ctx, name...)
 	if err1 != nil {
-		errs = append(errs, err1)
+		tx.EndTx(ctx, err1)
+		return err1
 	}
 	userrole := make([]*valueobject.UserRole, 0, len(newUserId))
 	for _, v := range newUserId {
@@ -34,9 +34,10 @@ func (u *Usecase) CreateAdminUser(ctx context.Context, name ...string) error {
 	}
 	err2 := tx.CreateUserRole(ctx, userrole...)
 	if err2 != nil {
-		errs = append(errs, err2)
+		tx.EndTx(ctx, err2)
+		return err2
 	}
-	return tx.EndTx(ctx, errs...)
+	return tx.EndTx(ctx)
 }
 
 func (u *Usecase) CreateUser(ctx context.Context, name ...string) error {
