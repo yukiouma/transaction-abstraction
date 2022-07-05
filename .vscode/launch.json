@@ -9,7 +9,7 @@
       "type": "go",
       "request": "launch",
       "mode": "auto",
-      "program": "${workspaceFolder}/adapt-ent/cmd/main.go",
+      "program": "${workspaceFolder}/adapt-gorm/cmd/main.go",
       "env": {
         "ENV": "DEV"
       }

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jul  4 23:08:49 2022
+# Make data base, printed on Tue Jul  5 21:54:53 2022
 
 # Variables
 
@@ -29,7 +29,7 @@ VSCODE_LOG_NATIVE = false
 # default
 MAKE_VERSION := 3.82
 # makefile
-CURDIR := /root/playground/go/sql-transaction-abstraction
+CURDIR := /root/playground/go/transaction-abstraction
 # makefile
 SHELL = /bin/sh
 # environment
@@ -67,9 +67,9 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
-PWD = /root/playground/go/sql-transaction-abstraction
+PWD = /root/playground/go/transaction-abstraction
 # environment
-VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-15f068d4-9208-445d-a966-366c46c217d5.sock
+VSCODE_IPC_HOOK_CLI = /run/user/0/vscode-ipc-12387991-455f-47eb-b279-cdb5596754de.sock
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -157,9 +157,9 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 
 # Directories
 
-# . (device 64768, inode 103378207): 10 files, no impossibilities.
+# . (device 64768, inode 67760363): 11 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -183,9 +183,23 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-04 22:29:45.765095084
+#  Last modified 2022-07-06 01:01:43
 #  File has been updated.
 #  Successfully updated.
+
+sql:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from `Makefile', line 10):
+	export ENV=$(ENV) && go run ./adapt-sql-driver/cmd/
+
+gorm:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from `Makefile', line 7):
+	export ENV=$(ENV) && go run ./adapt-gorm/cmd/
 
 # Not a target:
 .DEFAULT:
@@ -201,22 +215,23 @@ ent:
 	export ENV=$(ENV) && go run ./adapt-ent/cmd/
 
 # files hash-table stats:
-# Load=5/1024=0%, Rehash=0, Collisions=0/15=0%
+# Load=7/1024=1%, Rehash=0, Collisions=0/17=0%
 # VPATH Search Paths
 
 # No `vpath' search paths.
 
 # No general (`VPATH' variable) search path.
 
-# # of strings in strcache: 0 / lookups = 21 / hits = 21
+# # of strings in strcache: 0 / lookups = 26 / hits = 26
 # # of strcache buffers: 1 (* 8176 B/buffer = 8176 B)
-# strcache used: total = 0 (143) / max = 0 / min = 8176 / avg = 0
-# strcache free: total = 0 (8033) / max = 0 / min = 8176 / avg = 0
+# strcache used: total = 0 (157) / max = 0 / min = 8176 / avg = 0
+# strcache free: total = 0 (8019) / max = 0 / min = 8176 / avg = 0
 
 # strcache hash-table stats:
-# Load=16/8192=0%, Rehash=0, Collisions=3/21=14%
-# Finished Make data base on Mon Jul  4 23:08:49 2022
+# Load=19/8192=0%, Rehash=0, Collisions=3/26=12%
+# Finished Make data base on Tue Jul  5 21:54:53 2022
 
  
+make: Warning: File `Makefile' has modification time 11209 s in the future
 make: *** No rule to make target `all'.  Stop.
 
